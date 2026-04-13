@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bd0c990d76bb23146ad2bb1f583f2bc3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - idleData: {fileID: 11400000, guid: c033efe6fb2e3fd43ba0b3e0c561d8e6, type: 2}
+  - chaseData: {fileID: 11400000, guid: 91f40c444df502044bf5582635c299d5, type: 2}
+  - meleeData: {fileID: 11400000, guid: 41e51f17cc31de8448764b1425f4c001, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

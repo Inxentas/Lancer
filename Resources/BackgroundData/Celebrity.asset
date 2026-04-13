@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3125e6988992a1a4f9ad7977ac25e8ad, type: 3}
+  m_Name: Celebrity
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundData
+  displayName: Act Unseen Or Unheard
+  exampleTriggers:
+  - {fileID: 11400000, guid: c397634efe2a16e48ae1edf2b01d8a5a, type: 2}
+  - {fileID: 11400000, guid: 54fb9888263729c4899f526728ab4a09, type: 2}
+  - {fileID: 11400000, guid: f25954c4b1de56b4f85b47b0ba17397b, type: 2}
+  - {fileID: 11400000, guid: 2ec2f47d17a07db4ca39191f98b65425, type: 2}

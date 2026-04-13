@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fb8f29cc74d2148a51a9e4917e71bf, type: 3}
+  m_Name: Ghenghis
+  m_EditorClassIdentifier: Assembly-CSharp::MechData
+  displayName: Ghenghis
+  manufacturer: {fileID: 11400000, guid: a42d13bbe792d1e4bab8d3292442c0c5, type: 2}
+  armor: 3
+  savetarget: 10
+  sensors: 5
+  hp: 6
+  repcap: 4
+  evasion: 6
+  speed: 3
+  edefense: 8
+  techattack: -2
+  sp: 5
+  heatcap: 10

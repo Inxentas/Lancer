@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3125e6988992a1a4f9ad7977ac25e8ad, type: 3}
+  m_Name: NHP Specialist
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundData
+  displayName: NHP Specialist
+  exampleTriggers:
+  - {fileID: 11400000, guid: 710d959bb0eb2b04dab36449b9541041, type: 2}
+  - {fileID: 11400000, guid: 2cbacec648a27a447bdac0fd7a0c02cf, type: 2}
+  - {fileID: 11400000, guid: 34df80a8479aa0045aa44c6ca9e70518, type: 2}
+  - {fileID: 11400000, guid: e776e9018e3526248b1642b077084d61, type: 2}

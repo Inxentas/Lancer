@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3125e6988992a1a4f9ad7977ac25e8ad, type: 3}
+  m_Name: Spec Ops
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundData
+  displayName: Spec Ops
+  exampleTriggers:
+  - {fileID: 11400000, guid: c9b7e08e08e0c4646ae3713c689028f7, type: 2}
+  - {fileID: 11400000, guid: 4c36b75175b249e4e96a8227808e8d89, type: 2}
+  - {fileID: 11400000, guid: 7b80f29a2c8d5894bbd29447e0c6e17b, type: 2}
+  - {fileID: 11400000, guid: 710d959bb0eb2b04dab36449b9541041, type: 2}
