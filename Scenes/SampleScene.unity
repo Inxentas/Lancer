@@ -1600,6 +1600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd81614347d25f4d9a422b05a2d247f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavMeshEnemy
+  animator: {fileID: 0}
   idleData: {fileID: 11400000, guid: c033efe6fb2e3fd43ba0b3e0c561d8e6, type: 2}
   chaseData: {fileID: 11400000, guid: 91f40c444df502044bf5582635c299d5, type: 2}
   meleeData: {fileID: 11400000, guid: 41e51f17cc31de8448764b1425f4c001, type: 2}
@@ -1807,6 +1808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd81614347d25f4d9a422b05a2d247f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavMeshEnemy
+  animator: {fileID: 0}
   idleData: {fileID: 11400000, guid: c033efe6fb2e3fd43ba0b3e0c561d8e6, type: 2}
   chaseData: {fileID: 11400000, guid: 91f40c444df502044bf5582635c299d5, type: 2}
   meleeData: {fileID: 11400000, guid: 41e51f17cc31de8448764b1425f4c001, type: 2}
@@ -3086,6 +3088,63 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 2ae915b0c690e4348bfb69d7df5fc45d, type: 3}
+--- !u!1001 &1539704065271639027
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4824586542845953656, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 34.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824586542845953656, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824586542845953656, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 65.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824586542845953656, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.19270618
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824586542845953656, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824586542845953656, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.98125654
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824586542845953656, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824586542845953656, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824586542845953656, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 157.778
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824586542845953656, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065280254728712255, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_Name
+      value: SecBot
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
 --- !u!1001 &2301615025183947143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4159,3 +4218,4 @@ SceneRoots:
   - {fileID: 862349944}
   - {fileID: 1978041953}
   - {fileID: 441474793}
+  - {fileID: 1539704065271639027}

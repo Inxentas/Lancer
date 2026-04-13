@@ -22,6 +22,7 @@ public class NavMeshEntity : Entity, INavMeshEntity
     private NavMeshEntityStateChaseDataVirtual _chaseDataInstance;
     private NavMeshEntityStateMeleeDataVirtual _meleeDataInstance;
 
+    [SerializeField] private Animator animator;
     [SerializeField] private NavMeshEntityStateIdleDataVirtual idleData;    /* Set in inspector */
     [SerializeField] private NavMeshEntityStateChaseDataVirtual chaseData;  /* Set in inspector */
     [SerializeField] private NavMeshEntityStateMeleeDataVirtual meleeData;  /* Set in inspector */
@@ -91,6 +92,10 @@ public class NavMeshEntity : Entity, INavMeshEntity
             this._agent.isStopped = true;
             this._agent.velocity = new Vector3(0, 0, 0);
         }
+        if (this.animator)
+        {
+            this.animator.SetFloat("moveBlend", 0);
+        }
     }
     public void Teleport(Vector3 position)
     {
@@ -108,6 +113,10 @@ public class NavMeshEntity : Entity, INavMeshEntity
         {
             this.agent.isStopped = false;
             this.agent.SetDestination(this.sensor.navMeshPositionTarget);
+            if (this.animator)
+            {
+                this.animator.SetFloat("moveBlend", 0.5f);
+            }
         } 
     }
     public void RotateToTarget(float lerp)
