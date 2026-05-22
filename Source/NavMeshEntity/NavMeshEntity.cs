@@ -216,38 +216,31 @@ public class NavMeshEntity : Entity, INavMeshEntity
     }
     public void RequestRangedAttack()
     {
-        Debug.Log("-- RequestRangedAttack");
-        List<RangedComponent> valid = this.RangedComponentsWithin(this.sensor.distance);
+        List<RangedComponent> valid = this.RangedComponentsWithin(this.sensor.distance * 10f); /* modifier for Lancer rules */
         RangedComponent weighted = this.WeightRangedComponents(valid);
         if (weighted != null)
         {
+            Debug.Log("-- RequestRangedAttack success");
             Debug.Log(weighted.signatureWeaponData.displayName + " being fired!");
-            weighted.cooldownRemaining = weighted.cooldownDuration;
-            //
+            weighted.cooldownRemaining = weighted.cooldownDuration + weighted.animationDuration;
             Debug.Log("set attack duration on state to " + weighted.animationDuration);
-            this._rangeDataInstance.duration = weighted.animationDuration; // attack duration (NOT cooldown duration)
+            this._rangeDataInstance.duration = weighted.animationDuration;
             machine.SetState(this.machine.range);
-        } else
-        {
-            machine.SetState(this.machine.chase);
         }
     }
     public void RequestMeleeAttack()
     {
-        Debug.Log("-- RequestMeleeAttack");
         List<MeleeComponent> valid = this.MeleeComponentsCooledDown();
         MeleeComponent weighted = this.WeightMeleeComponents(valid);
         if (weighted != null)
         {
+            Debug.Log("-- RequestMeleeAttack success");
             Debug.Log(weighted.compositeWeaponData.displayName + " being fired!");
-            weighted.cooldownRemaining = weighted.cooldownDuration;
+            weighted.cooldownRemaining = weighted.cooldownDuration + weighted.animationDuration;
             Debug.Log("set attack duration on state to " + weighted.animationDuration);
             this._meleeDataInstance.duration = weighted.animationDuration;
             machine.SetState(this.machine.melee);
-        } else
-        {
-            machine.SetState(this.machine.chase);
-        }   
+        }  
     }
 
     //public override void Harm()

@@ -160,6 +160,12 @@ public class Sensor : MonoBehaviour, ISensor
             }
         }
         //Debug.DrawRay(ray.origin, ray.direction * this.distance2D, Color.yellow);
+
+        // fallback for when we're too close. should be based on SOMETHING other then a magic number. 
+        if(this.distance < 2.0f)
+        {
+            return true;
+        }
         return false;
     }
 

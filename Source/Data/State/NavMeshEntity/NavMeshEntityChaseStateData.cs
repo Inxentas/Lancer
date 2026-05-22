@@ -8,6 +8,7 @@ public class NavMeshEntityStateChaseData : NavMeshEntityStateChaseDataVirtual
 
     public override void OnEnter()
     {
+        Debug.Log("CHASE STATE OnEnter!");
         base.OnEnter();
         if (this.sensor.navMeshPositionTarget != Vector3.zero)
         {

@@ -6,7 +6,7 @@ public class NavMeshEntityStateMeleeData : NavMeshEntityStateMeleeDataVirtual
 {
     public override void OnEnter()
     {
-        Debug.Log("MELEE ATTACK OnEnter!");
+        Debug.Log("MELEE STATE OnEnter!");
         base.OnEnter();
         this.entity.StopAgent();
     }

@@ -6,6 +6,7 @@ public class NavMeshEntityStateIdleData : NavMeshEntityStateIdleDataVirtual
 {
     public override void OnEnter()
     {
+        Debug.Log("IDLE STATE OnEnter!");
         base.OnEnter();
         this.entity.StopAgent();
     }
@@ -21,9 +22,13 @@ public class NavMeshEntityStateIdleData : NavMeshEntityStateIdleDataVirtual
                 {
                     this.entity.RequestChase();
                 }
+                else if (this.sensor.distance < this.entity.getMaxRangedComponentRange())
+                {
+                    this.entity.RequestRangedAttack();
+                }
                 else if (this.sensor.distance < 3.0f)
                 {
-                    this.entity.RequestMeleeAttack();
+                    //this.entity.RequestMeleeAttack();
                 }
             }
         }

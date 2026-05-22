@@ -6,7 +6,7 @@ public class NavMeshEntityStateRangeData : NavMeshEntityStateRangeDataVirtual
 {
     public override void OnEnter()
     {
-        Debug.Log("RANGED ATTACK OnEnter!");
+        Debug.Log("RANGED STATE OnEnter!");
         base.OnEnter();
         this.entity.StopAgent();
     }

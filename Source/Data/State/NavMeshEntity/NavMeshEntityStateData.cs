@@ -22,7 +22,7 @@ public class NavMeshEntityStateData : ScriptableObject
     }
     public virtual void OnExit() { this.Clear(); }
     public virtual void Clear() 
-    { 
-        //
+    {
+        this.timer = 0.0f;
     }
 }

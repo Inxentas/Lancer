@@ -3106,6 +3106,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: 7c64e8e7a983cae4a844aea0a9da7410, type: 2}
+    - target: {fileID: 1567143631353347966, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4824586542845953656, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.4
@@ -3184,7 +3188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
       propertyPath: meleeComponents.Array.data[0].cooldownDuration
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
       propertyPath: meleeComponents.Array.data[0].animationDuration
@@ -3192,15 +3196,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
       propertyPath: rangedComponents.Array.data[0].cooldownDuration
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
       propertyPath: rangedComponents.Array.data[1].cooldownDuration
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
       propertyPath: rangedComponents.Array.data[0].animationDuration
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
       propertyPath: rangedComponents.Array.data[1].animationDuration
