@@ -21,17 +21,24 @@ public class NavMeshEntityStateChaseData : NavMeshEntityStateChaseDataVirtual
     {
         base.OnUpdate();
 
-        if (this.sensor.navMeshPositionTarget != Vector3.zero)
+        if (this.sensor.hasLos)
         {
-            if (this.sensor.hasLos)
+            if (this.sensor.distance > this.meleeDistance && this.sensor.distance < this.entity.getMaxRangedComponentRange())
+            {
+                this.entity.RequestRangedAttack();
+            }
+            else if (this.sensor.distance < this.meleeDistance)
+            {
+                this.entity.RequestMeleeAttack();
+            }
+            else
             {
                 this.entity.MoveToTarget();
             }
         }
-
-        if (this.sensor.distance < this.meleeDistance)
+        else
         {
-            this.entity.machine.SetState(this.entity.machine.melee);
+            this.entity.RequestIdle();
         }
     }
     public override void OnExit()

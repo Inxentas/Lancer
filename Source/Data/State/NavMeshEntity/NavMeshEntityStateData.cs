@@ -10,7 +10,7 @@ public class NavMeshEntityStateData : ScriptableObject
         this.entity = entity;
         this.sensor = entity.GetISensor();
     }
-    public virtual void OnEnter() { }
+    public virtual void OnEnter() { Debug.Log(this.entity + " entered " + this.name);  }
     public virtual void OnUpdate() { }
     public virtual void OnExit() { this.Clear(); }
     public virtual void Clear() 

@@ -14,9 +14,9 @@ public class NavMeshEntityStateIdleData : NavMeshEntityStateIdleDataVirtual
         base.OnUpdate();
         if (this.sensor.hasLos)
         {
-            if (this.sensor.distance > 8.0f)
+            if (this.sensor.distance < 20.0f)
             {
-                this.entity.machine.SetState(this.entity.machine.chase);
+                this.entity.RequestChase();
             }
         }
     }

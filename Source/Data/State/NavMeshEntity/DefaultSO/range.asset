@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 052de7736a5ece64b93544a3192c525c, type: 3}
-  m_Name: chase
-  m_EditorClassIdentifier: Assembly-CSharp::ChaseStateDataDirect
-  meleeDistance: 4
+  m_Script: {fileID: 11500000, guid: 5c1f4629a51e5a34c85de99755b70d30, type: 3}
+  m_Name: range
+  m_EditorClassIdentifier: Assembly-CSharp::NavMeshEntityStateRangeData

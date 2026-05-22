@@ -1,12 +1,12 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NavMeshEntityStateMeleeData", menuName = "ScriptableObjects/NavMeshEntityState/MeleeData")]
+[CreateAssetMenu(fileName = "NavMeshEntityStateRangeData", menuName = "ScriptableObjects/NavMeshEntityState/RangeData")]
 
-public class NavMeshEntityStateMeleeData : NavMeshEntityStateMeleeDataVirtual
+public class NavMeshEntityStateRangeData : NavMeshEntityStateRangeDataVirtual
 {
     public override void OnEnter()
     {
-        Debug.Log("MELEE ATTACK!");
+        Debug.Log("RANGED ATTACK!");
         base.OnEnter();
         this.entity.StopAgent();
     }

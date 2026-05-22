@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,41 +18,47 @@ public class NavMeshEntity : Entity, INavMeshEntity
     public Sensor sensor { get { return this._sensor; } }
     public StateMachineNavMeshEntity machine { get { return this._machine; } }
 
-    //state NavMeshEntity
+    // fields
+    [SerializeField] private Animator animator;                                     /* Set in inspector */
+    [SerializeField] private NavMeshEntityStateIdleDataVirtual idleData;            /* Set in inspector */
+    [SerializeField] private NavMeshEntityStateChaseDataVirtual chaseData;          /* Set in inspector */
+    [SerializeField] private NavMeshEntityStateMeleeDataVirtual meleeData;          /* Set in inspector */
+    [SerializeField] private NavMeshEntityStateRangeDataVirtual rangeData;          /* Set in inspector */
+    public List<RangedComponent> rangedComponents = new List<RangedComponent>();    /* Set in inspector */
+    public List<MeleeComponent> meleeComponents = new List<MeleeComponent>();       /* Set in inspector */
+    // states
     private NavMeshEntityStateIdleDataVirtual _idleDataInstance;
     private NavMeshEntityStateChaseDataVirtual _chaseDataInstance;
     private NavMeshEntityStateMeleeDataVirtual _meleeDataInstance;
-
-    [SerializeField] private Animator animator;
-    [SerializeField] private NavMeshEntityStateIdleDataVirtual idleData;    /* Set in inspector */
-    [SerializeField] private NavMeshEntityStateChaseDataVirtual chaseData;  /* Set in inspector */
-    [SerializeField] private NavMeshEntityStateMeleeDataVirtual meleeData;  /* Set in inspector */
-
+    private NavMeshEntityStateRangeDataVirtual _rangeDataInstance;
+    // getters
     public NavMeshEntityStateIdleDataVirtual idle { get { return this._idleDataInstance; } }
     public NavMeshEntityStateChaseDataVirtual chase { get { return this._chaseDataInstance; } }
     public NavMeshEntityStateMeleeDataVirtual melee { get { return this._meleeDataInstance; } }
+    public NavMeshEntityStateRangeDataVirtual range { get { return this._rangeDataInstance; } }
 
     // entity
     override protected void OnAwake()
     {
+        // set components
         this._agent = this.GetComponent<NavMeshAgent>();
         this._sensor = this.GetComponent<Sensor>();
 
-        
         // copy over all SO data so we have unique instances.
         this._idleDataInstance = Instantiate(this.idleData);
         this._chaseDataInstance = Instantiate(this.chaseData);
         this._meleeDataInstance = Instantiate(this.meleeData);
+        this._rangeDataInstance = Instantiate(this.rangeData);
 
         // initialize these states with their dependencies.
         this._idleDataInstance.Initialize(this);
         this._chaseDataInstance.Initialize(this);
         this._meleeDataInstance.Initialize(this);
+        this._rangeDataInstance.Initialize(this);
 
         // initialize the actual state machine.
         this._machine = new StateMachineNavMeshEntity(this);
         this._machine.SetState(this._machine.idle);
-        
     }
     override protected void OnStart()
     {
@@ -136,7 +143,73 @@ public class NavMeshEntity : Entity, INavMeshEntity
         return this.sensor as ISensor;
     }
 
+    // combat components
+    public List<RangedComponent> RangedComponentsWithin(float distance)
+    {
+        return this.RangedComponentsCooledDown().Where(c => c.signatureWeaponData.range <= distance).ToList();
+    }
+    public List<RangedComponent> RangedComponentsCooledDown()
+    {
+        return this.rangedComponents.Where(c => c.cooldownRemaining == 0).ToList();
+    }
+    public float getMaxRangedComponentRange()
+    {
+        return rangedComponents.Max(c => c.signatureWeaponData.range);
+    }
+    public RangedComponent WeightRangedComponents(List<RangedComponent> components)
+    {
+        float totalWeight = 0f;
+        foreach (RangedComponent r in components) { totalWeight += r.weight; }
+        float random = UnityEngine.Random.value * totalWeight;
+        foreach (var comp in components)
+        {
+            random -= comp.weight;
+            if (random <= 0f)
+            {
+                return comp;
+            }
+        }
+        return components[^1];
+    }
+    public MeleeComponent WeightMeleeComponents(List<MeleeComponent> components)
+    {
+        float totalWeight = 0f;
+        foreach (MeleeComponent m in components) { totalWeight += m.weight; }
+        float random = UnityEngine.Random.value * totalWeight;
+        foreach (var comp in components)
+        {
+            random -= comp.weight;
+            if (random <= 0f)
+            {
+                return comp;
+            }
+        }
+        return components[^1];
+    }
 
+
+    public void RequestIdle()
+    {
+        machine.SetState(this.machine.idle);
+    }
+    public void RequestChase()
+    {
+        machine.SetState(this.machine.chase);
+    }
+    public void RequestRangedAttack()
+    {
+        List<RangedComponent> valid = this.RangedComponentsWithin(this.sensor.distance);
+        RangedComponent weighted = this.WeightRangedComponents(valid);
+        
+        Debug.Log(weighted.signatureWeaponData.displayName + " being fired!");
+        weighted.cooldownRemaining = weighted.cooldownDuration;
+
+        machine.SetState(this.machine.range);
+    }
+    public void RequestMeleeAttack()
+    {
+        machine.SetState(this.machine.melee);
+    }
 
     //public override void Harm()
     //{
@@ -150,7 +223,6 @@ public class NavMeshEntity : Entity, INavMeshEntity
     //this.StopAgent();
     //GameEvents.navMeshEntityKill.Invoke(this);
     //}
-
 
     // events
     private void OnNavMeshEntityHarm(NavMeshEntity entity)

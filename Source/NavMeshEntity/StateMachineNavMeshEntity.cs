@@ -8,6 +8,7 @@ public class StateMachineNavMeshEntity : StateMachine
     public StateNavMeshEntityIdle idle;
     public StateNavMeshEntityChase chase;
     public StateNavMeshEntityMelee melee;
+    public StateNavMeshEntityRange range;
 
     public StateMachineNavMeshEntity(NavMeshEntity entity)
     {
@@ -18,6 +19,7 @@ public class StateMachineNavMeshEntity : StateMachine
         this.idle = new StateNavMeshEntityIdle(this);
         this.chase = new StateNavMeshEntityChase(this);
         this.melee = new StateNavMeshEntityMelee(this);
+        this.range = new StateNavMeshEntityRange(this);
     }
 }
 public class StateNavMeshEntity : State
@@ -74,7 +76,7 @@ public class StateNavMeshEntityMelee : StateNavMeshEntity
     public override void OnStateEnter()
     {
         base.OnStateEnter();
-        entity.melee.OnUpdate();
+        entity.melee.OnEnter();
     }
     public override void OnStateUpdate()
     {
@@ -85,5 +87,25 @@ public class StateNavMeshEntityMelee : StateNavMeshEntity
     {
         base.OnStateExit();
         entity.melee.OnExit();
+    }
+}
+public class StateNavMeshEntityRange : StateNavMeshEntity
+{
+    public StateNavMeshEntityRange(StateMachineNavMeshEntity machine) : base(machine) { }
+
+    public override void OnStateEnter()
+    {
+        base.OnStateEnter();
+        entity.range.OnEnter();
+    }
+    public override void OnStateUpdate()
+    {
+        base.OnStateUpdate();
+        entity.range.OnUpdate();
+    }
+    public override void OnStateExit()
+    {
+        base.OnStateExit();
+        entity.range.OnExit();
     }
 }
