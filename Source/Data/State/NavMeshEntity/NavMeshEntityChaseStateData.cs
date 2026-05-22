@@ -27,7 +27,7 @@ public class NavMeshEntityStateChaseData : NavMeshEntityStateChaseDataVirtual
             {
                 this.entity.RequestRangedAttack();
             }
-            else if (this.sensor.distance < this.meleeDistance)
+            else if (this.sensor.distance < this.meleeDistance) // perhaps add range clause too?
             {
                 this.entity.RequestMeleeAttack();
             }

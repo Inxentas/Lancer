@@ -216,7 +216,7 @@ public class NavMeshEntity : Entity, INavMeshEntity
     }
     public void RequestRangedAttack()
     {
-        Debug.Log("RequestRangedAttack");
+        Debug.Log("-- RequestRangedAttack");
         List<RangedComponent> valid = this.RangedComponentsWithin(this.sensor.distance);
         RangedComponent weighted = this.WeightRangedComponents(valid);
         if (weighted != null)
@@ -234,7 +234,7 @@ public class NavMeshEntity : Entity, INavMeshEntity
     }
     public void RequestMeleeAttack()
     {
-        Debug.Log("RequestMeleeAttack");
+        Debug.Log("-- RequestMeleeAttack");
         List<MeleeComponent> valid = this.MeleeComponentsCooledDown();
         MeleeComponent weighted = this.WeightMeleeComponents(valid);
         if (weighted != null)

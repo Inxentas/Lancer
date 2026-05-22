@@ -13,7 +13,7 @@ public class NavMeshEntityStateMeleeData : NavMeshEntityStateMeleeDataVirtual
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.progress >= 1) { this.entity.RequestIdle(); }
+        if (this.progress >= 1) { this.entity.RequestChase(); }
     }
     public override void OnExit()
     {

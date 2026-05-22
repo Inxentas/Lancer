@@ -12,11 +12,19 @@ public class NavMeshEntityStateIdleData : NavMeshEntityStateIdleDataVirtual
     public override void OnUpdate()
     {
         base.OnUpdate();
+
         if (this.sensor.hasLos)
         {
-            if (this.sensor.distance < 20.0f)
+            if(this.sensor.distance < 50f) // detection range
             {
-                this.entity.RequestChase();
+                if (this.sensor.distance > this.entity.getMaxRangedComponentRange())
+                {
+                    this.entity.RequestChase();
+                }
+                else if (this.sensor.distance < 3.0f)
+                {
+                    this.entity.RequestMeleeAttack();
+                }
             }
         }
     }
