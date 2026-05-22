@@ -3187,6 +3187,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: meleeComponents.Array.data[0].animationDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
       propertyPath: rangedComponents.Array.data[0].cooldownDuration
       value: 1
       objectReference: {fileID: 0}
@@ -3195,7 +3199,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: rangedComponents.Array.data[0].animationDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: rangedComponents.Array.data[1].animationDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
       propertyPath: meleeComponents.Array.data[0].SignatureWeaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: a06d8cdb8cc59c24bbf3b62675454451, type: 2}
+    - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}
+      propertyPath: meleeComponents.Array.data[0].compositeWeaponData
       value: 
       objectReference: {fileID: 11400000, guid: a06d8cdb8cc59c24bbf3b62675454451, type: 2}
     - target: {fileID: 5867367935945158225, guid: a7bda1bad9298cb4a96acd155b87361c, type: 3}

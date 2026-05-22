@@ -6,14 +6,14 @@ public class NavMeshEntityStateMeleeData : NavMeshEntityStateMeleeDataVirtual
 {
     public override void OnEnter()
     {
-        Debug.Log("MELEE ATTACK!");
+        Debug.Log("MELEE ATTACK OnEnter!");
         base.OnEnter();
         this.entity.StopAgent();
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
-        // TODO: Write basic attack logic.
+        if (this.progress >= 1) { this.entity.RequestIdle(); }
     }
     public override void OnExit()
     {

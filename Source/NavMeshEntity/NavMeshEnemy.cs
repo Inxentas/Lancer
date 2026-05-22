@@ -5,24 +5,8 @@ using System.Linq;
 
 public class NavMeshEnemy : NavMeshEntity, IEnemy
 {
-    protected override void OnUpdate()
-    {
-        base.OnUpdate();
 
-        foreach(RangedComponent r in rangedComponents)
-        {
-            r.cooldownRemaining -= (Time.deltaTime * Time.timeScale);
-            r.cooldownRemaining = Mathf.Clamp(r.cooldownRemaining, 0, r.cooldownDuration);
-        }
-        foreach (MeleeComponent m in meleeComponents)
-        {
-            m.cooldownRemaining -= (Time.deltaTime * Time.timeScale);
-            m.cooldownRemaining = Mathf.Clamp(m.cooldownRemaining, 0, m.cooldownDuration);
-        }
-    }
 }
-
-
 public class CombatComponent
 {
     public string name = "New Combat Component";
@@ -34,10 +18,11 @@ public class CombatComponent
 public class RangedComponent : CombatComponent
 {
     public SignatureWeaponData signatureWeaponData;
+    public float animationDuration = 1.0f;
 }
 [Serializable]
 public class MeleeComponent : CombatComponent
 {
-    public CompositeWeaponData SignatureWeaponData;
-    
+    public CompositeWeaponData compositeWeaponData;
+    public float animationDuration = 1.0f;
 }

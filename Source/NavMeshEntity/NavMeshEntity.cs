@@ -66,6 +66,7 @@ public class NavMeshEntity : Entity, INavMeshEntity
     }
     override protected void OnUpdate()
     {
+        this.UpdateCombatComponents();
         if (this._machine != null)
         {
             this._machine.Run();
@@ -152,6 +153,10 @@ public class NavMeshEntity : Entity, INavMeshEntity
     {
         return this.rangedComponents.Where(c => c.cooldownRemaining == 0).ToList();
     }
+    public List<MeleeComponent> MeleeComponentsCooledDown()
+    {
+        return this.meleeComponents.Where(c => c.cooldownRemaining == 0).ToList();
+    }
     public float getMaxRangedComponentRange()
     {
         return rangedComponents.Max(c => c.signatureWeaponData.range);
@@ -169,7 +174,7 @@ public class NavMeshEntity : Entity, INavMeshEntity
                 return comp;
             }
         }
-        return components[^1];
+        return null;
     }
     public MeleeComponent WeightMeleeComponents(List<MeleeComponent> components)
     {
@@ -184,9 +189,22 @@ public class NavMeshEntity : Entity, INavMeshEntity
                 return comp;
             }
         }
-        return components[^1];
+        return null;
     }
 
+    public void UpdateCombatComponents()
+    {
+        foreach (RangedComponent r in rangedComponents)
+        {
+            r.cooldownRemaining -= (Time.deltaTime * Time.timeScale);
+            r.cooldownRemaining = Mathf.Clamp(r.cooldownRemaining, 0, r.cooldownDuration);
+        }
+        foreach (MeleeComponent m in meleeComponents)
+        {
+            m.cooldownRemaining -= (Time.deltaTime * Time.timeScale);
+            m.cooldownRemaining = Mathf.Clamp(m.cooldownRemaining, 0, m.cooldownDuration);
+        }
+    }
 
     public void RequestIdle()
     {
@@ -198,17 +216,38 @@ public class NavMeshEntity : Entity, INavMeshEntity
     }
     public void RequestRangedAttack()
     {
+        Debug.Log("RequestRangedAttack");
         List<RangedComponent> valid = this.RangedComponentsWithin(this.sensor.distance);
         RangedComponent weighted = this.WeightRangedComponents(valid);
-        
-        Debug.Log(weighted.signatureWeaponData.displayName + " being fired!");
-        weighted.cooldownRemaining = weighted.cooldownDuration;
-
-        machine.SetState(this.machine.range);
+        if (weighted != null)
+        {
+            Debug.Log(weighted.signatureWeaponData.displayName + " being fired!");
+            weighted.cooldownRemaining = weighted.cooldownDuration;
+            //
+            Debug.Log("set attack duration on state to " + weighted.animationDuration);
+            this._rangeDataInstance.duration = weighted.animationDuration; // attack duration (NOT cooldown duration)
+            machine.SetState(this.machine.range);
+        } else
+        {
+            machine.SetState(this.machine.chase);
+        }
     }
     public void RequestMeleeAttack()
     {
-        machine.SetState(this.machine.melee);
+        Debug.Log("RequestMeleeAttack");
+        List<MeleeComponent> valid = this.MeleeComponentsCooledDown();
+        MeleeComponent weighted = this.WeightMeleeComponents(valid);
+        if (weighted != null)
+        {
+            Debug.Log(weighted.compositeWeaponData.displayName + " being fired!");
+            weighted.cooldownRemaining = weighted.cooldownDuration;
+            Debug.Log("set attack duration on state to " + weighted.animationDuration);
+            this._meleeDataInstance.duration = weighted.animationDuration;
+            machine.SetState(this.machine.melee);
+        } else
+        {
+            machine.SetState(this.machine.chase);
+        }   
     }
 
     //public override void Harm()
